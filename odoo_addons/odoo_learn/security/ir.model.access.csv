@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_employee_user,access_employee_user,odoo_learn.model_learn_employee,odoo_learn.group_employee_user,1,1,1,0
+access_employee_manager,access_employee_manager,odoo_learn.model_learn_employee,odoo_learn.group_employee_manager,1,1,1,1
+
+access_department_user,access_department_user,odoo_learn.model_department,odoo_learn.group_employee_user,1,0,0,0
+access_department_manager,access_department_manager,odoo_learn.model_department,odoo_learn.group_employee_manager,1,1,1,1

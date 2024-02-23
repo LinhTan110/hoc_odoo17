@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        # hien o ngoai
+        <record id="employee_view_tree" model="ir.ui.view">
+            <field name="name">employee_view_tree</field>
+            <field name="model">learn.employee</field>
+            <field name="arch" type="xml">
+                <tree string="employee_tree">
+                    <field name="name"/>
+                    <field name="phone" groups="odoo_learn.group_employee_manager"/>
+                    <field name="email"/>
+                    <field name="dob"/>
+                <!--    <field name="address"/> -->
+                </tree>
+            </field>
+        </record>
+        # trong cho tao moi
+        <record id="employee_view_form" model="ir.ui.view">
+            <field name="name">employee_view_form</field>
+            <field name="model">learn.employee</field>
+            <field name="arch" type="xml">
+                <form string="employee_form">
+                    <sheet>
+                        <div class="oe_title">
+                            <lable for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="title"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="department_id" required="1"/>
+                                <field name="phone"/>
+                                <field name="dob"/>
+                                <field name="gender"/>
+                            </group>
+                            <group>
+                            <!--khong hien email khi tao va xem thong tin cu the-->
+                                <field name="email" invisible="True"/>
+                                <field name="address" required="(dob != False)"/>
+                                <field name="company" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="employee_action" model="ir.actions.act_window">
+            <field name="name">List Employee</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">learn.employee</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="employee_root_menu_id" name="Employees" sequence="2"/>
+        <menuitem id="employee_menu_id" name="Employee" parent="odoo_learn.employee_root_menu_id" action="employee_action" sequence="1"/>
+
+        <menuitem id="test_menu_id" name="Test" parent="odoo_learn.employee_root_menu_id"
+                  action="employee_action" sequence="2" groups="odoo_learn.group_employee_manager"/>
+
+    </data>
+</odoo>
